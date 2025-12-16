@@ -1,0 +1,12 @@
+/* client-vite/src/styles/Dashboard.css */
+.preset-dashboard-container {
+    width: 100%;
+    height: 80vh; /* Altura de la vista */
+    min-height: 700px; /* Altura mínima para que sea usable */
+}
+
+/* Opcional: Para anular el max-width del contenedor padre en esta página */
+.dashboard-page-content {
+    max-width: none !important; 
+    padding: 0;
+}

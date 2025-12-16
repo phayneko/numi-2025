@@ -1,0 +1,175 @@
+/* client-vite/src/App.css */
+
+/* ======================================================= */
+/* 1. ESTILOS GLOBALES Y CORRECCIÓN DE ANCHO */
+/* ======================================================= */
+#root {
+  /* max-width: 1280px; -> Si se quiere usar todo el ancho, mantener comentado */
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+  width: 100%; /* ✅ CLAVE: Permite que la app ocupe todo el ancho */
+}
+
+/* ---------------------------------------------------- */
+/* ESTILOS BASE DEL LAYOUT (Móvil First) */
+/* ---------------------------------------------------- */
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.app-header {
+    background-color: #282c34;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.app-title {
+    font-size: 1.5em;
+    margin: 0 0 0 10px;
+}
+
+.hamburger-button {
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Sidebar para Móvil */
+.app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    padding-top: 60px; /* Espacio para el header */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 950;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.app-sidebar.is-open {
+    transform: translateX(0);
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    border-bottom: 1px solid #444;
+}
+
+.menu-link {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.menu-link:hover {
+    background-color: #444;
+}
+
+.logout-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 920;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    width: 100%; /* Por defecto en móvil */
+}
+
+/* ---------------------------------------------------- */
+/* ESTILOS DE ESCRITORIO (Desktop: > 768px) */
+/* ---------------------------------------------------- */
+@media (min-width: 768px) {
+    
+    .hamburger-button {
+        display: none; /* Oculta el botón en desktop */
+    }
+
+    .app-sidebar {
+        transform: translateX(0) !important; /* Siempre visible */
+        position: fixed; 
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 900;
+        padding-top: 0; /* No necesita padding superior */
+    }
+
+    .overlay {
+        display: none; /* Oculta el overlay en desktop */
+    }
+
+    .main-content {
+        /* ✅ CLAVE: Mueve el contenido principal a la derecha del sidebar */
+        margin-left: 250px; 
+        width: calc(100% - 250px); 
+        min-height: calc(100vh - 40px);
+    }
+}
+
+
+/* ======================================================= */
+/* 2. ESTILOS ESPECÍFICOS DEL DASHBOARD DE PRESET (CORREGIDO) */
+/* ======================================================= */
+
+/* Contenedor del Preset en Dashboard.jsx (Añadido/Corregido margen) */
+.preset-dashboard-wrapper {
+    margin: 20px 0; /* Margen superior e inferior razonable */
+    width: 100%; 
+    /* min-height ya no es necesario aquí, lo manejará el container */
+}
+
+/* Contenedor del Iframe dentro del componente PresetDashboard.jsx */
+.preset-dashboard-container {
+    width: 100%;
+    height: 100%;
+    min-height: 800px; /* Altura significativa, puede ajustarse a '100vh' si quieres que ocupe todo el espacio vertical. */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* El Iframe generado por el SDK (Corrección Clave) */
+.preset-dashboard-container iframe {
+    width: 100%; /* ✅ CORRECCIÓN CLAVE: No más 325% */
+    height: 100%; 
+    border: none;
+    display: block;
+}
