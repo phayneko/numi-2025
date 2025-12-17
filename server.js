@@ -27,7 +27,7 @@ app.use(express.json()); // Habilita la lectura del cuerpo JSON
 // Configuración de CORS
 const corsOptions = {
     // Permite peticiones desde tu frontend (Vite)
- origin: ['https://phenomenal-beijinho-4ef9de.netlify.app/api/Login', 
+ origin: ['https://phenomenal-beijinho-4ef9de.netlify.app', 
         'http://localhost:5173'],
     methods: 'GET,POST', 
     allowedHeaders: ['Content-Type'], 
@@ -196,6 +196,7 @@ app.post('/api/preset-embed-token', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor API corriendo en el puerto ${PORT}`);
 });
+
 
 
 
