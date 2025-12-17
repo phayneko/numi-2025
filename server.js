@@ -24,16 +24,22 @@ const PRESET_MANAGER_API_URL = process.env.PRESET_MANAGER_API_URL || 'https://ap
 // =======================================================
 app.use(express.json()); // Habilita la lectura del cuerpo JSON
 
-// Configuración de CORS
+const app = express();
+
+// 1. Configurar opciones
 const corsOptions = {
-    // Permite peticiones desde tu frontend (Vite)
- origin: ['https://phenomenal-beijinho-4ef9de.netlify.app', 
-        'http://localhost:5173'],
-    methods: 'GET,POST', 
-    allowedHeaders: ['Content-Type'], 
+    origin: ['https://phenomenal-beijinho-4ef9de.netlify.app', 'http://localhost:5173'],
+    methods: 'GET,POST',
+    allowedHeaders: ['Content-Type'],
     optionsSuccessStatus: 200 
 };
-app.use(cors(corsOptions)); // Aplica CORS a TODAS las rutas
+
+// 2. ACTIVAR CORS (Esto debe ir arriba de las rutas)
+app.use(cors(corsOptions));
+app.use(express.json());
+
+// 3. Rutas (Esto va después)
+app.post('/api/Login', (req, res) => { ... });// Aplica CORS a TODAS las rutas
 
 
 // =======================================================
@@ -196,6 +202,7 @@ app.post('/api/preset-embed-token', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor API corriendo en el puerto ${PORT}`);
 });
+
 
 
 
